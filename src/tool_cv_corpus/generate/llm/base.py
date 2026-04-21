@@ -61,6 +61,17 @@ class LLMResponse(BaseModel):
         ),
     )
     cache_hit: bool = False
+    tool_use: dict[str, Any] | None = Field(
+        default=None,
+        description=(
+            "First tool_use block's parsed input, when the model elected to "
+            "call a tool. Synthesis uses this for structured output: the "
+            "``input_schema`` is derived from a Pydantic model, so the "
+            "returned dict can be round-tripped through that model for "
+            "type-safe downstream access. None when the model produced only "
+            "text."
+        ),
+    )
     raw: dict[str, Any] | None = Field(
         default=None,
         description=(
