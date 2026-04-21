@@ -15,9 +15,9 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Literal, cast
 
-import yaml
 from pydantic import TypeAdapter, ValidationError
 
+from ..io.yaml_loader import iter_yaml_files
 from ..schema import AnyEntity, Claim
 from ..schema.base import Entity
 from ..schema.entities import Skill
@@ -98,16 +98,12 @@ class ValidatorRunner:
         return Check("layout", "ok", "")
 
     def _c02_parse_yaml(self) -> Check:
-        for path in sorted(self.corpus.rglob("*.yaml")):
-            try:
-                data = yaml.safe_load(path.read_text(encoding="utf-8"))
-            except yaml.YAMLError as exc:
-                self._parse_errors.append(f"{path}: {exc}")
-                continue
-            if not isinstance(data, dict):
-                self._parse_errors.append(f"{path}: top-level YAML must be a mapping")
-                continue
-            self._parsed.append((path, data))
+        for result in iter_yaml_files(self.corpus):
+            if result.ok:
+                assert result.data is not None
+                self._parsed.append((result.path, result.data))
+            else:
+                self._parse_errors.append(f"{result.path}: {result.error}")
         if self._parse_errors:
             return Check(
                 "parse_yaml",
@@ -215,8 +211,11 @@ class ValidatorRunner:
         for path, raw in self._parsed:
             if raw.get("kind") != "claim":
                 continue
+            # ``Claim`` has no ``kind`` field; strip the discriminator
+            # before validation to match the loader's behavior.
+            payload = {k: v for k, v in migrate(raw).items() if k != "kind"}
             try:
-                claim = adapter.validate_python(migrate(raw))
+                claim = adapter.validate_python(payload)
             except ValidationError as exc:
                 invalid.append(f"{path}: {exc.errors()[0]['msg']}")
                 continue
