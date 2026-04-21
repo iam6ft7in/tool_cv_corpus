@@ -19,10 +19,11 @@ import hashlib
 import json
 import sqlite3
 import time
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from .base import LLMResponse, Msg, Tool
+from .base import LLMProvider, LLMResponse, Msg, Tool
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS responses (
@@ -107,3 +108,52 @@ class LLMResponseCache:
                 (key, resp.model, time.time(), resp.model_dump_json()),
             )
             con.commit()
+
+
+@dataclass
+class CachedLLMProvider:
+    """Provider wrapper that consults ``LLMResponseCache`` before delegating.
+
+    Advertised as ``LLMProvider`` via duck typing: callers only see the
+    ``name`` attribute and the ``complete`` method, which matches the
+    protocol. A hit returns the cached ``LLMResponse`` with ``cache_hit``
+    already set by ``LLMResponseCache.get``; a miss calls the inner
+    provider and writes the result back.
+    """
+
+    inner: LLMProvider
+    cache: LLMResponseCache
+    name: str = "cached"
+
+    def complete(
+        self,
+        *,
+        system: str,
+        messages: list[Msg],
+        tools: list[Tool] | None = None,
+        model: str | None = None,
+        max_tokens: int = 4096,
+        temperature: float = 0.7,
+    ) -> LLMResponse:
+        effective_model = model or getattr(self.inner, "_default_model", "") or ""
+        key = compute_cache_key(
+            system=system,
+            messages=messages,
+            tools=tools,
+            model=effective_model,
+            max_tokens=max_tokens,
+            temperature=temperature,
+        )
+        hit = self.cache.get(key)
+        if hit is not None:
+            return hit
+        resp = self.inner.complete(
+            system=system,
+            messages=messages,
+            tools=tools,
+            model=model,
+            max_tokens=max_tokens,
+            temperature=temperature,
+        )
+        self.cache.put(key, resp)
+        return resp
