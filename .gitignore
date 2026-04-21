@@ -28,6 +28,9 @@ _review/
 # Generated outputs (resumes, CVs, cover letters) per target
 output/
 
+# Generated JSON Schemas from `cv-corpus schema --out schemas/`
+schemas/
+
 # Mkdocs build
 site/
 
