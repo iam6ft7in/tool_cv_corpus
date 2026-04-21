@@ -11,7 +11,7 @@ for the live list, or `cv-corpus <command> --help` for any one.
 | `ingest`   | Pull an external source into the corpus (auto-detects ingester).    |
 | `validate` | Run 11 ordered checks on a corpus directory.                        |
 | `render`   | Format a `RenderedResume` JSON with a registered renderer.          |
-| `generate` | Produce a target-tailored `RenderedResume` (v0.2).                  |
+| `generate` | Produce a target-tailored `RenderedResume`. See [Generating](generating.md). |
 | `review`   | Pretty-print a `RenderedResume` for a quick read.                   |
 | `schema`   | Dump pydantic JSON Schemas per entity kind.                         |
 | `doctor`   | Diagnose the install: paths, LLM settings, discovered plugins.      |
