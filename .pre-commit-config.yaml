@@ -1,0 +1,41 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+        args: ["--maxkb=2000"]
+      - id: check-merge-conflict
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+      - id: ruff-format
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.4
+    hooks:
+      - id: gitleaks
+  - repo: local
+    hooks:
+      # Run mypy from the uv-managed venv so it sees every runtime
+      # dependency (typer, rich, httpx, anthropic, ...). The
+      # mirrors-mypy hook creates its own isolated env and would need
+      # every dep restated in additional_dependencies, which drifts.
+      - id: mypy
+        name: mypy
+        entry: uv run mypy src/tool_cv_corpus
+        language: system
+        pass_filenames: false
+        files: ^src/.*\.py$
+      # Validate only the canonical example corpus. The user's own
+      # corpus/ is meant to be populated by `cv-corpus init`; failing
+      # on the empty template scaffold would be noise.
+      - id: cv-corpus-validate
+        name: cv-corpus validate
+        entry: uv run cv-corpus validate examples/corpus_jordan_taylor
+        language: system
+        pass_filenames: false
+        files: ^examples/corpus_jordan_taylor/

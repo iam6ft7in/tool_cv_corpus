@@ -1,0 +1,9 @@
+kind: skill
+id: kubernetes
+name: Kubernetes
+tier: applied
+confidence: proficient
+years: 4.5
+last_used: "2025-04"
+aliases:
+  - k8s

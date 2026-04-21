@@ -1,0 +1,20 @@
+kind: role
+id: senior_swe_acme_2021
+title: Senior Software Engineer
+organization_id: acme_analytics
+employment_type: full_time
+period:
+  start: "2021-03"
+  end: "2023-10"
+location: Remote
+remote: true
+headline: Owned the billing and customer-attribution services end to end.
+achievement_ids:
+  - ach_launched_metered_billing
+  - ach_reduced_cohort_latency
+skill_ids:
+  - python
+  - postgres
+  - fastapi
+  - distributed_systems
+  - ad_tech_attribution

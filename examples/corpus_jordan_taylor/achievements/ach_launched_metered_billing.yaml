@@ -1,0 +1,20 @@
+kind: achievement
+id: ach_launched_metered_billing
+headline: Launched metered-usage billing for 2.1k customers in a single quarter.
+role_id: senior_swe_acme_2021
+date: "2022-09"
+skill_ids:
+  - python
+  - postgres
+  - fastapi
+metrics:
+  - name: Net new ARR
+    delta_pct: 18.0
+    direction: increase
+    timeframe: Q4 2022
+  - name: Monthly invoicing errors
+    value: 12.0
+    unit: errors
+    baseline: 180.0
+    direction: decrease
+    timeframe: Q4 2022

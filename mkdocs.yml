@@ -1,0 +1,63 @@
+site_name: tool_cv_corpus
+site_description: >
+  Schema-driven, LLM-assisted engine that compiles a graph-of-atoms
+  career corpus into job-targeted CVs, resumes, and cover letters.
+site_url: https://iam6ft7in.github.io/tool_cv_corpus/
+repo_url: https://github.com/iam6ft7in/tool_cv_corpus
+repo_name: iam6ft7in/tool_cv_corpus
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: false
+            show_signature: true
+            members_order: source
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - User Guide:
+      - Getting started: user_guide/getting_started.md
+      - Building a corpus: user_guide/building_a_corpus.md
+      - Rendering: user_guide/rendering.md
+      - Ingesting external sources: user_guide/ingesting.md
+      - CLI reference: user_guide/cli_reference.md
+  - Plugin authoring: plugin_authoring/index.md
+  - Architecture:
+      - Schema: architecture/schema.md
+      - Pipeline: architecture/pipeline.md

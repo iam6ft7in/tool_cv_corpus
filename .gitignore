@@ -1,0 +1,57 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+.coverage
+coverage.xml
+htmlcov/
+.env
+.env.*
+!.env.example
+
+# Per-machine Claude Code overrides (local-only)
+.claude/settings.local.json
+
+# Claude session state (machine-local, not project history)
+SESSION_STATE.md
+
+# Local corpus review queue
+_review/
+
+# Generated outputs (resumes, CVs, cover letters) per target
+output/
+
+# Mkdocs build
+site/
+
+# Editor artifacts
+*.orig
+*~
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Safety net: never commit originals that should live in the
+# content-addressable source store outside the repo. See
+# src/tool_cv_corpus/config/paths.py for where the CAS lives per OS.
+corpus/sources/*.pdf
+corpus/sources/*.docx
+corpus/sources/*.doc
+corpus/sources/*.odt
+corpus/sources/*.rtf
+corpus/sources/*.txt
+corpus/sources/*.html
+corpus/sources/*.png
+corpus/sources/*.jpg
+corpus/sources/*.jpeg
+corpus/sources/*.zip

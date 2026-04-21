@@ -1,0 +1,19 @@
+kind: achievement
+id: ach_migrated_ingestion_pipeline
+headline: Migrated 40 TB/day ingestion pipeline from Python workers to Go, halving compute cost.
+role_id: staff_eng_helioform_2023
+date: "2024-06"
+skill_ids:
+  - go
+  - kubernetes
+  - distributed_systems
+  - observability
+metrics:
+  - name: Ingestion compute cost
+    delta_pct: 52.0
+    direction: decrease
+    timeframe: H1 2024
+  - name: Daily ingestion volume
+    value: 40.0
+    unit: TB/day
+    timeframe: H1 2024

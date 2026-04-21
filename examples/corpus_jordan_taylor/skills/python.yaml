@@ -1,0 +1,10 @@
+kind: skill
+id: python
+name: Python
+tier: foundational
+confidence: expert
+years: 9.0
+last_used: "2025-04"
+aliases:
+  - py
+  - python3

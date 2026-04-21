@@ -1,0 +1,55 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  pypi:
+    name: publish to PyPI
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/tool-cv-corpus
+    permissions:
+      id-token: write  # OIDC trusted publishing
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Build
+        run: uv build
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          # Trusted publishing; no token. Configure the PyPI trusted publisher
+          # to match owner=iam6ft7in, repo=tool_cv_corpus, workflow=release.yml,
+          # environment=pypi before the first tag push.
+          packages-dir: dist/
+
+  docs:
+    name: publish docs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # mkdocs gh-deploy pushes to gh-pages
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Sync
+        run: uv sync --dev
+
+      - name: Deploy docs
+        run: uv run mkdocs gh-deploy --force --clean

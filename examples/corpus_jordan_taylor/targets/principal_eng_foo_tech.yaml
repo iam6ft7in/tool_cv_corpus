@@ -1,0 +1,17 @@
+kind: target
+id: principal_eng_foo_tech
+role_title: Principal Engineer, Platform
+organization_name: Foo Technologies (fictional)
+job_posting_url: https://jobs.example/principal-platform
+requirements:
+  - "10+ years building distributed data systems"
+  - "Polyglot: comfortable in Go and Python"
+  - "Track record leading platform migrations with measurable cost wins"
+  - "Open-source presence a plus"
+emphasis_skill_ids:
+  - distributed_systems
+  - go
+  - kubernetes
+  - observability
+avoid_skill_ids:
+  - ad_tech_attribution

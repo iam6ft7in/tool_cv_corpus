@@ -1,0 +1,9 @@
+kind: skill
+id: go
+name: Go
+tier: foundational
+confidence: proficient
+years: 3.0
+last_used: "2025-04"
+aliases:
+  - golang

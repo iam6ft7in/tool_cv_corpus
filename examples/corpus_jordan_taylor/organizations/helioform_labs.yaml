@@ -1,0 +1,9 @@
+kind: organization
+id: helioform_labs
+name: Helioform Labs
+website: https://helioform.example
+industry: Observability platforms
+size: 201-500
+description: >
+  Late-stage startup building unified tracing/metrics/logging tooling
+  for engineering teams at medium-scale B2B vendors.

@@ -1,0 +1,12 @@
+kind: person
+id: jordan_taylor
+full_name: Jordan Taylor
+preferred_name: Jordan
+headline: Staff Engineer - distributed data platforms & observability
+pronouns: they/them
+location: Remote (EU/US overlap)
+contact:
+  email: jordan.taylor@example.com
+  website: https://jordan.example
+  github: https://github.com/jordan-taylor-example
+  linkedin: https://www.linkedin.com/in/jordan-taylor-example

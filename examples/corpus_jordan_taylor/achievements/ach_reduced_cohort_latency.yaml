@@ -1,0 +1,16 @@
+kind: achievement
+id: ach_reduced_cohort_latency
+headline: Cut p95 cohort-attribution query latency from 4.1 s to 420 ms.
+role_id: senior_swe_acme_2021
+date: "2023-05"
+skill_ids:
+  - postgres
+  - distributed_systems
+  - ad_tech_attribution
+metrics:
+  - name: p95 query latency
+    value: 420.0
+    unit: ms
+    baseline: 4100.0
+    direction: decrease
+    timeframe: May 2023

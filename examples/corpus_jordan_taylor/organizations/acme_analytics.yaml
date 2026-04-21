@@ -1,0 +1,9 @@
+kind: organization
+id: acme_analytics
+name: ACME Analytics
+website: https://acme-analytics.example
+industry: B2B SaaS - marketing attribution
+size: 51-200
+description: >
+  Mid-market analytics vendor serving ~3k customers with real-time
+  attribution dashboards.

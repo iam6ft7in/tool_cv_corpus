@@ -1,0 +1,24 @@
+# Default: normalize to LF on commit
+* text=auto eol=lf
+
+# Windows scripts require CRLF on checkout
+*.ps1 text eol=crlf
+*.vbs text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files — no line ending conversion
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.bin binary
+*.hex binary
+*.elf binary
+*.o binary
+*.obj binary
+*.exe binary
+*.dll binary
+*.pdf binary
+*.zip binary

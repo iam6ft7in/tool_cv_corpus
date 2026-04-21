@@ -1,0 +1,12 @@
+kind: achievement
+id: ach_open_sourced_profile_tool
+headline: Open-sourced a continuous-profiling sidecar; 1.4k GitHub stars in nine months.
+role_id: staff_eng_helioform_2023
+date: "2025-02"
+skill_ids:
+  - go
+  - observability
+metrics:
+  - name: GitHub stars
+    value: 1400.0
+    timeframe: first 9 months

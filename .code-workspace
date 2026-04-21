@@ -1,0 +1,26 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "workbench.colorTheme": "Solarized Dark",
+        "editor.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace",
+        "editor.fontSize": 14,
+        "editor.rulers": [88],
+        "files.autoSave": "onFocusChange",
+        "editor.minimap.enabled": false,
+        "gitlens.codeLens.enabled": false,
+        "gitlens.currentLine.enabled": false,
+        "cSpell.words": []
+    },
+    "extensions": {
+        "recommendations": [
+            "eamodio.gitlens",
+            "GitHub.vscode-pull-request-github",
+            "EditorConfig.EditorConfig",
+            "streetsidesoftware.code-spell-checker"
+        ]
+    }
+}

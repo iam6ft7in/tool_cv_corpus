@@ -1,0 +1,8 @@
+kind: skill
+id: fastapi
+name: FastAPI
+tier: applied
+confidence: proficient
+years: 4.0
+last_used: "2023-10"
+parent_id: python

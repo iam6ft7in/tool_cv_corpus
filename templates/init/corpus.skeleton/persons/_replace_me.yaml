@@ -1,0 +1,8 @@
+kind: person
+id: me
+full_name: Your Name Here
+headline: One-line positioning statement.
+location: City, Country
+contact:
+  email: you@example.com
+  website: https://you.example

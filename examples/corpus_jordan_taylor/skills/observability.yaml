@@ -1,0 +1,10 @@
+kind: skill
+id: observability
+name: Observability & tracing
+tier: applied
+confidence: expert
+years: 5.0
+last_used: "2025-04"
+aliases:
+  - tracing
+  - instrumentation

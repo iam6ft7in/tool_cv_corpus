@@ -1,0 +1,18 @@
+kind: role
+id: staff_eng_helioform_2023
+title: Staff Engineer, Platform
+organization_id: helioform_labs
+employment_type: full_time
+period:
+  start: "2023-11"
+location: Remote
+remote: true
+headline: Technical lead for the ingestion and query-engine group.
+achievement_ids:
+  - ach_migrated_ingestion_pipeline
+  - ach_open_sourced_profile_tool
+skill_ids:
+  - go
+  - kubernetes
+  - observability
+  - distributed_systems

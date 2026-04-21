@@ -1,0 +1,34 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 88
+
+# Windows scripts use CRLF
+[*.{ps1,vbs,bat,cmd}]
+end_of_line = crlf
+
+# YAML uses 2-space indent
+[*.{yml,yaml}]
+indent_size = 2
+
+# JSON uses 2-space indent
+[*.json]
+indent_size = 2
+
+# Markdown: preserve trailing spaces (two spaces = line break)
+[*.md]
+trim_trailing_whitespace = false
+
+# Makefiles require tabs
+[Makefile]
+indent_style = tab
+
+# Assembly uses tabs
+[*.{asm,s,S}]
+indent_style = tab

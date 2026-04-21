@@ -1,0 +1,118 @@
+[project]
+name = "tool-cv-corpus"
+version = "0.1.0"
+description = "Schema-driven, LLM-assisted engine that compiles a graph-of-atoms career corpus into job-targeted CVs, resumes, and cover letters."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Anthony Riles" }]
+keywords = ["resume", "cv", "cover-letter", "career", "llm", "typst", "json-resume"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Office/Business",
+  "Topic :: Text Processing :: Markup",
+]
+dependencies = [
+  "pydantic>=2.7",
+  "pyyaml>=6.0",
+  "python-frontmatter>=1.1",
+  "typer>=0.12",
+  "rich>=13.7",
+  "platformdirs>=4.2",
+  "httpx>=0.27",
+  "anthropic>=0.34",
+]
+
+[project.optional-dependencies]
+docx = ["python-docx>=1.1"]
+pdf_extract = ["pypdf>=4.2"]
+jinja = ["jinja2>=3.1"]
+all = ["tool-cv-corpus[docx,pdf_extract,jinja]"]
+
+[project.scripts]
+cv-corpus = "tool_cv_corpus.cli.main:app"
+
+[project.entry-points."tool_cv_corpus.renderers"]
+typst = "tool_cv_corpus.render.typst_renderer:TypstRenderer"
+json_resume = "tool_cv_corpus.render.json_resume:JsonResumeRenderer"
+docx = "tool_cv_corpus.render.docx_renderer:DocxRenderer"
+html = "tool_cv_corpus.render.html_renderer:HtmlRenderer"
+
+[project.entry-points."tool_cv_corpus.ingesters"]
+markdown = "tool_cv_corpus.ingest.markdown:MarkdownIngester"
+linkedin_export = "tool_cv_corpus.ingest.linkedin_export:LinkedInExportIngester"
+github_profile = "tool_cv_corpus.ingest.github_profile:GithubProfileIngester"
+orcid = "tool_cv_corpus.ingest.orcid:OrcidIngester"
+
+[project.entry-points."tool_cv_corpus.llm_providers"]
+anthropic = "tool_cv_corpus.generate.llm.anthropic_provider:AnthropicProvider"
+openai = "tool_cv_corpus.generate.llm.openai_provider:OpenAIProvider"
+
+[project.urls]
+Homepage = "https://github.com/iam6ft7in/tool_cv_corpus"
+Documentation = "https://iam6ft7in.github.io/tool_cv_corpus/"
+Issues = "https://github.com/iam6ft7in/tool_cv_corpus/issues"
+Changelog = "https://github.com/iam6ft7in/tool_cv_corpus/blob/main/CHANGELOG.md"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tool_cv_corpus"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/tool_cv_corpus/render/templates" = "tool_cv_corpus/render/templates"
+"templates/init/corpus.skeleton" = "tool_cv_corpus/_init_skeleton"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+extend-exclude = ["examples/", "corpus/"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "SIM", "RUF"]
+ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["E501"]
+"src/tool_cv_corpus/cli/**" = ["B008"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["typer.Argument", "typer.Option"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+mypy_path = "src"
+packages = ["tool_cv_corpus"]
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = ["frontmatter.*", "platformdirs.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra --strict-markers"
+
+[dependency-groups]
+dev = [
+  "pytest>=8.2",
+  "pytest-cov>=5.0",
+  "mypy>=1.11",
+  "pre-commit>=3.8",
+  "types-PyYAML>=6.0",
+  "mkdocs>=1.6",
+  "mkdocs-material>=9.5",
+  "mkdocstrings[python]>=0.26",
+]

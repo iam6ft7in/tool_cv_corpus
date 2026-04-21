@@ -1,0 +1,10 @@
+kind: skill
+id: postgres
+name: PostgreSQL
+tier: foundational
+confidence: proficient
+years: 7.0
+last_used: "2025-01"
+aliases:
+  - postgresql
+  - pg
