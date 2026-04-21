@@ -95,6 +95,17 @@ class AnthropicProvider(LLMProvider):
             for block in getattr(resp, "content", [])
             if getattr(block, "type", "") == "text"
         )
+        # Tool-use support: if the model called a tool, surface the first
+        # tool-use block's parsed input. Synthesis relies on this for
+        # structured output; callers that only wanted text will see
+        # tool_use=None and use ``text`` as before.
+        tool_use: dict[str, Any] | None = None
+        for block in getattr(resp, "content", []):
+            if getattr(block, "type", "") == "tool_use":
+                raw_input = getattr(block, "input", None)
+                if isinstance(raw_input, dict):
+                    tool_use = raw_input
+                break
         usage = {
             "input_tokens": getattr(resp.usage, "input_tokens", 0) or 0,
             "output_tokens": getattr(resp.usage, "output_tokens", 0) or 0,
@@ -106,4 +117,5 @@ class AnthropicProvider(LLMProvider):
             model=getattr(resp, "model", model_id),
             stop_reason=getattr(resp, "stop_reason", None),
             usage=usage,
+            tool_use=tool_use,
         )
