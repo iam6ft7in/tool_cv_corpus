@@ -54,6 +54,7 @@ nav:
   - User Guide:
       - Getting started: user_guide/getting_started.md
       - Building a corpus: user_guide/building_a_corpus.md
+      - Generating a targeted resume: user_guide/generating.md
       - Rendering: user_guide/rendering.md
       - Ingesting external sources: user_guide/ingesting.md
       - CLI reference: user_guide/cli_reference.md
