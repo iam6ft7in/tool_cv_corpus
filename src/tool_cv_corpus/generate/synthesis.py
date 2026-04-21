@@ -269,6 +269,50 @@ class SynthesisError(RuntimeError):
     """Raised when a required LLM call did not return structured output."""
 
 
+def synthesize_no_llm(
+    corpus: Corpus,
+    target: Target,
+    selection: Selection,
+    scores: dict[str, ScoreBreakdown],
+) -> RenderedResume:
+    """Assemble a ``RenderedResume`` without any LLM calls.
+
+    ``headline`` and ``summary`` are left ``None``; per-role bullets are
+    populated from raw ``Claim.text`` in selection order. Intended for
+    offline/CI development, ``cv-corpus generate --no-llm``, and as a
+    deterministic reference in tests that would otherwise need to mock a
+    provider. Output is not target-tailored in prose, but selection
+    already applied target-aware ranking, so the content is still
+    relevant to the target.
+    """
+    claim_by_id = _index_claims_by_id(corpus)
+    sections: list[RenderedSection] = []
+    for role_id in selection.role_ids:
+        role_claims = _collect_role_claims(
+            corpus=corpus,
+            role_id=role_id,
+            selection=selection,
+            claim_by_id=claim_by_id,
+        )
+        if not role_claims:
+            continue
+        sections.append(
+            RenderedSection(
+                name=f"role:{role_id}",
+                kind="bullets",
+                bullets=[c.text for c in role_claims],
+            )
+        )
+    return _assemble_rendered_resume(
+        corpus=corpus,
+        target=target,
+        selection=selection,
+        pass_a=None,
+        sections=sections,
+        scores=scores,
+    )
+
+
 # --- Pass A (headline + summary) ----------------------------------------
 
 
