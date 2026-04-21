@@ -37,6 +37,6 @@ def test_entry_points_resolve_and_conform(group: str, protocol: type) -> None:
             # Constructors that need args (e.g., GithubProfileIngester(username=...)).
             # We still verify the class itself can be referenced.
             continue
-        assert isinstance(
-            instance, protocol
-        ), f"{group}:{ep.name} does not conform to {protocol.__name__}"
+        assert isinstance(instance, protocol), (
+            f"{group}:{ep.name} does not conform to {protocol.__name__}"
+        )
