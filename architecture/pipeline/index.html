@@ -396,6 +396,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user_guide/generating/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generating a targeted resume
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user_guide/rendering/" class="md-nav__link">
         
   
@@ -666,6 +694,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#generate-pipeline-v02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate pipeline (v0.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generate pipeline (v0.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-loader-tool_cv_corpusgenerateloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Loader (tool_cv_corpus.generate.loader)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-scorer-tool_cv_corpusgeneratescoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Scorer (tool_cv_corpus.generate.scoring)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-selector-tool_cv_corpusgenerateselection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Selector (tool_cv_corpus.generate.selection)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-synthesis-tool_cv_corpusgeneratesynthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Synthesis (tool_cv_corpus.generate.synthesis)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -716,6 +816,78 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate-pipeline-v02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate pipeline (v0.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generate pipeline (v0.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-loader-tool_cv_corpusgenerateloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Loader (tool_cv_corpus.generate.loader)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-scorer-tool_cv_corpusgeneratescoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Scorer (tool_cv_corpus.generate.scoring)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-selector-tool_cv_corpusgenerateselection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Selector (tool_cv_corpus.generate.selection)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-synthesis-tool_cv_corpusgeneratesynthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Synthesis (tool_cv_corpus.generate.synthesis)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -780,6 +952,111 @@
 <li><strong>Render</strong> is a pure function of the <code>RenderedResume</code>. Renderers
   never reach back into the corpus graph.</li>
 </ul>
+<h2 id="generate-pipeline-v02">Generate pipeline (v0.2)<a class="headerlink" href="#generate-pipeline-v02" title="Permanent link">&para;</a></h2>
+<p><code>cv-corpus generate</code> is four substages behind a single CLI surface.
+Each substage returns an immutable value the next stage reads; there
+is no shared mutable state, so tests can swap any one stage for a
+fixture without faking the others.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>load_corpus  ─►  score_claims  ─►  select  ─►  synthesize  ─►  RenderedResume
+</code></pre></div>
+<h3 id="1-loader-tool_cv_corpusgenerateloader">1. Loader (<code>tool_cv_corpus.generate.loader</code>)<a class="headerlink" href="#1-loader-tool_cv_corpusgenerateloader" title="Permanent link">&para;</a></h3>
+<p><code>load_corpus(root, *, max_visibility)</code> walks the corpus, parses every
+YAML, applies schema migrations, validates against <code>AnyEntity</code> and
+<code>Claim</code>, enforces exactly one <code>Person</code>, applies the visibility cap,
+and drops claims superseded by an active successor. Returns an
+immutable <code>Corpus</code> (<code>MappingProxyType</code> over entities and
+<code>tuple[Claim, ...]</code> per subject) so downstream stages can memoize
+against it safely.</p>
+<ul>
+<li><strong>Strict vs permissive</strong>: the loader raises <code>CorpusLoadError</code> on
+  the first parse or schema failure. The validator (<code>cv-corpus
+  validate</code>) is the permissive sibling — it accumulates every error
+  for a single report. Callers facing bad input are expected to fix
+  it via the validator before <code>generate</code> can run.</li>
+</ul>
+<h3 id="2-scorer-tool_cv_corpusgeneratescoring">2. Scorer (<code>tool_cv_corpus.generate.scoring</code>)<a class="headerlink" href="#2-scorer-tool_cv_corpusgeneratescoring" title="Permanent link">&para;</a></h3>
+<p><code>score_claims(corpus, target, weights, now)</code> returns
+<code>dict[str, ScoreBreakdown]</code>. Five additive signals, each independently
+weighted and each skippable via a zero weight:</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Default</th>
+<th>What it measures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>emphasis_skill_overlap</code></td>
+<td>+3.0 per match</td>
+<td>subject's skills (expanded up <code>parent_id</code>) intersect <code>Target.emphasis_skill_ids</code></td>
+</tr>
+<tr>
+<td><code>avoid_skill_overlap</code></td>
+<td>-5.0 per match</td>
+<td>same, for <code>avoid_skill_ids</code>. Stronger than one emphasis match by design</td>
+</tr>
+<tr>
+<td><code>claim_type</code></td>
+<td>impact=1.0 ... context=0.1</td>
+<td>per-type preference</td>
+</tr>
+<tr>
+<td><code>sourced</code></td>
+<td>+0.5</td>
+<td>claim has at least one <code>SourceDoc</code> reference</td>
+</tr>
+<tr>
+<td><code>recency</code></td>
+<td>peak 1.0, 36-month half-life</td>
+<td>age of subject; open-ended periods resolve to now</td>
+</tr>
+</tbody>
+</table>
+<p><code>ScoreBreakdown</code> carries both <code>total</code> and the per-signal <code>components</code>
+so a future <code>--explain</code> view can surface attribution.</p>
+<h3 id="3-selector-tool_cv_corpusgenerateselection">3. Selector (<code>tool_cv_corpus.generate.selection</code>)<a class="headerlink" href="#3-selector-tool_cv_corpusgenerateselection" title="Permanent link">&para;</a></h3>
+<p><code>select(corpus, target, scores, budget)</code> returns a <code>Selection</code> of
+IDs only. The <code>Corpus</code> stays the source of truth for bodies, which
+means a selection bug can never silently rewrite a record.</p>
+<p>Rules:</p>
+<ul>
+<li>Roles chronologically, newest first, capped by <code>max_roles</code>.</li>
+<li>Achievements per role ranked by best claim-score on that
+  achievement, capped by <code>max_achievements_per_role</code>.</li>
+<li>Skills ranked by direct &gt; ancestor emphasis; avoid-matches and
+  ancestor-avoid matches excluded; when both a skill and one of its
+  ancestors qualify, the leaf wins.</li>
+<li>Summary claims filtered to <code>impact</code> or <code>outcome</code>, ranked across all
+  subjects, capped by <code>max_summary_claims</code>.</li>
+<li>Per-subject claims: top-k by score for every selected subject.</li>
+<li>Char budget: a best-effort trim drops lowest-scoring per-subject
+  claims first, then summary claims last, until the total fits
+  <code>total_claim_char_limit</code>.</li>
+</ul>
+<h3 id="4-synthesis-tool_cv_corpusgeneratesynthesis">4. Synthesis (<code>tool_cv_corpus.generate.synthesis</code>)<a class="headerlink" href="#4-synthesis-tool_cv_corpusgeneratesynthesis" title="Permanent link">&para;</a></h3>
+<p>Two LLM passes via Anthropic tool-use:</p>
+<ul>
+<li><strong>Pass A</strong> (one call): emits <code>headline</code> + <code>summary</code> via an
+  <code>emit_headline_and_summary</code> tool whose <code>input_schema</code> is derived
+  from a <code>PassAOutput</code> Pydantic model.</li>
+<li><strong>Pass B</strong> (one call per role): emits rewritten bullets per source
+  claim via <code>emit_bullets</code>. Per-role granularity keeps the cache
+  useful: editing one role does not re-price the others.</li>
+</ul>
+<p>The <strong>no-new-facts guard</strong> checks every rewritten bullet for numeric
+tokens absent from the source; offenders fall back to the original
+<code>Claim.text</code>. Pass A failures raise <code>SynthesisError</code>; Pass B failures
+fall back silently so one flaky call never erases an entire role.</p>
+<p><code>--no-llm</code> swaps synthesis for <code>synthesize_no_llm</code>, which reuses the
+same assembler but draws bullets from raw <code>Claim.text</code>. <code>--dry-run</code>
+stops before this stage entirely.</p>
+<h3 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h3>
+<p><code>CachedLLMProvider</code> wraps any <code>LLMProvider</code> with the SQLite cache at
+<code>cache_dir() / "llm_cache.sqlite"</code>. Keys are sha256 of the full
+request; changing a single prompt word cleanly busts only the
+affected entries.</p>
 
 
 

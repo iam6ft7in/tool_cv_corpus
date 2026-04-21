@@ -11,13 +11,13 @@
       
       
       
-        <link rel="canonical" href="https://iam6ft7in.github.io/tool_cv_corpus/user_guide/rendering/">
+        <link rel="canonical" href="https://iam6ft7in.github.io/tool_cv_corpus/user_guide/generating/">
       
       
-        <link rel="prev" href="../generating/">
+        <link rel="prev" href="../building_a_corpus/">
       
       
-        <link rel="next" href="../ingesting/">
+        <link rel="next" href="../rendering/">
       
       
         
@@ -28,7 +28,7 @@
     
     
       
-        <title>Rendering - tool_cv_corpus</title>
+        <title>Generating a targeted resume - tool_cv_corpus</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rendering" class="md-skip">
+        <a href="#generating-a-targeted-resume" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rendering
+              Generating a targeted resume
             
           </span>
         </div>
@@ -397,34 +397,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../generating/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Generating a targeted resume
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -444,7 +416,7 @@
   <span class="md-ellipsis">
     
   
-    Rendering
+    Generating a targeted resume
   
 
     
@@ -462,7 +434,7 @@
   <span class="md-ellipsis">
     
   
-    Rendering
+    Generating a targeted resume
   
 
     
@@ -488,10 +460,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#default-renderers" class="md-nav__link">
+  <a href="#the-four-stage-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Default renderers
+        The four-stage pipeline
       
     </span>
   </a>
@@ -499,10 +471,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#command" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Command
+        Quick start
       
     </span>
   </a>
@@ -510,10 +482,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#typst-specifics" class="md-nav__link">
+  <a href="#flags" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Typst specifics
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit codes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-two-offline-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The two offline modes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The two offline modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-dry-run-inspect-selection-no-synthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --dry-run: inspect selection, no synthesis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-no-llm-deterministic-offline-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --no-llm: deterministic offline build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#target-shape-reminder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Target shape reminder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-new-facts-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No-new-facts guard
       
     </span>
   </a>
@@ -524,6 +579,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -761,10 +844,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#default-renderers" class="md-nav__link">
+  <a href="#the-four-stage-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Default renderers
+        The four-stage pipeline
       
     </span>
   </a>
@@ -772,10 +855,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#command" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Command
+        Quick start
       
     </span>
   </a>
@@ -783,10 +866,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#typst-specifics" class="md-nav__link">
+  <a href="#flags" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Typst specifics
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit codes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-two-offline-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The two offline modes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The two offline modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-dry-run-inspect-selection-no-synthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --dry-run: inspect selection, no synthesis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-no-llm-deterministic-offline-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --no-llm: deterministic offline build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#target-shape-reminder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Target shape reminder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-new-facts-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No-new-facts guard
       
     </span>
   </a>
@@ -813,57 +979,199 @@
   
 
 
-<h1 id="rendering">Rendering<a class="headerlink" href="#rendering" title="Permanent link">&para;</a></h1>
-<p>The engine produces a format-agnostic <code>RenderedResume</code> which
-pluggable <strong>renderers</strong> turn into bytes.</p>
-<h2 id="default-renderers">Default renderers<a class="headerlink" href="#default-renderers" title="Permanent link">&para;</a></h2>
+<h1 id="generating-a-targeted-resume">Generating a targeted resume<a class="headerlink" href="#generating-a-targeted-resume" title="Permanent link">&para;</a></h1>
+<p><code>cv-corpus generate</code> compiles a validated corpus into a
+<code>RenderedResume</code> tailored to one <code>Target</code> entity. Output is JSON; any
+registered renderer (<code>typst</code>, <code>json_resume</code>, <code>docx</code>, <code>html</code>) can turn
+that JSON into a final document via <code>cv-corpus render</code>.</p>
+<h2 id="the-four-stage-pipeline">The four-stage pipeline<a class="headerlink" href="#the-four-stage-pipeline" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>corpus (YAML)                  Target (YAML)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>      |                              |
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>      v                              v
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a> +----------+     +---------+    +----------+    +-----------+    +----------------+
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a> |  loader  | --&gt; | scorer  |---&gt;| selector |---&gt;| synthesis |---&gt;| RenderedResume |
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a> +----------+     +---------+    +----------+    +-----------+    +----------------+
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>   resolves         ranks           picks          LLM rewrites       JSON on disk
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   and              every           per-section    (or raw text
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>   redacts          claim           what fits      under --no-llm)
+</code></pre></div>
+<p>Each stage is deterministic for fixed inputs. The synthesis stage is
+the only place an LLM is allowed to invent prose.</p>
+<ol>
+<li><strong>Loader</strong> (<code>generate/loader.py</code>) parses the corpus, applies
+   migrations, validates against the Pydantic schema, enforces exactly
+   one <code>Person</code>, drops claims superseded by an active successor, and
+   applies the visibility cap. Returns an immutable <code>Corpus</code>.</li>
+<li><strong>Scorer</strong> (<code>generate/scoring.py</code>) scores each claim on five
+   signals: emphasis-skill overlap, avoid-skill overlap, claim type,
+   sourced-ness, and recency. Each claim gets a <code>ScoreBreakdown</code> with
+   per-signal contributions for future <code>--explain</code> views.</li>
+<li><strong>Selector</strong> (<code>generate/selection.py</code>) picks the subset under
+   per-section budgets: roles chronologically, top achievements per
+   role, leaf-preferred skills (drops the parent when a descendant
+   qualifies), summary claims by type, per-subject claims capped.</li>
+<li><strong>Synthesis</strong> (<code>generate/synthesis.py</code>) runs two LLM calls:
+   Pass A for headline+summary, Pass B per role for bullet rewrites.
+   Both use Anthropic tool-use with Pydantic-derived <code>input_schema</code>
+   for reliable structured output. A "no new facts" guard rejects any
+   rewritten bullet that introduces a numeric token absent from the
+   source claim; those fall back to the original <code>Claim.text</code>.</li>
+</ol>
+<h2 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<p>Assuming <code>my_corpus/targets/senior_eng_foo_corp.yaml</code> exists and the
+rest of the corpus passes <code>cv-corpus validate</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-...
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cv-corpus<span class="w"> </span>generate<span class="w"> </span>my_corpus<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--target<span class="w"> </span>senior_eng_foo_corp<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>--out<span class="w"> </span>output/senior_eng_foo_corp.json
+</code></pre></div>
+<p>Follow with a renderer:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cv-corpus<span class="w"> </span>render<span class="w"> </span>output/senior_eng_foo_corp.json<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--renderer<span class="w"> </span>typst<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--out<span class="w"> </span>output/senior_eng_foo_corp.pdf
+</code></pre></div>
+<h2 id="flags">Flags<a class="headerlink" href="#flags" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Output</th>
-<th>Extra install</th>
+<th>Flag</th>
+<th>Default</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>typst</code></td>
-<td>PDF</td>
-<td><code>typst</code> on PATH</td>
+<td><code>--target</code>, <code>-t</code></td>
+<td>required</td>
+<td>ID of the <code>Target</code> entity to tailor towards.</td>
 </tr>
 <tr>
-<td><code>json_resume</code></td>
-<td>JSON</td>
-<td>built in</td>
+<td><code>--out</code>, <code>-o</code></td>
+<td><code>output/rendered_resume.json</code></td>
+<td>Where to write the <code>RenderedResume</code> JSON.</td>
 </tr>
 <tr>
-<td><code>html</code></td>
-<td>HTML</td>
-<td>built in</td>
+<td><code>--max-visibility</code></td>
+<td><code>private</code></td>
+<td>Redaction cap. <code>public</code> drops <code>nda</code> and <code>private</code>; <code>nda</code> drops <code>private</code>; <code>private</code> keeps all.</td>
 </tr>
 <tr>
-<td><code>docx</code></td>
-<td>DOCX</td>
-<td><code>[docx]</code> extra</td>
+<td><code>--dry-run</code></td>
+<td><code>false</code></td>
+<td>Stop after selection. Prints the manifest; no LLM call, no file write.</td>
+</tr>
+<tr>
+<td><code>--no-llm</code></td>
+<td><code>false</code></td>
+<td>Skip synthesis. Build <code>RenderedResume</code> from raw <code>Claim.text</code>. Deterministic and free.</td>
+</tr>
+<tr>
+<td><code>--provider</code></td>
+<td><code>anthropic</code></td>
+<td>LLM provider. v0.2 supports <code>anthropic</code>; more via entry points in later releases.</td>
+</tr>
+<tr>
+<td><code>--model</code></td>
+<td>provider default</td>
+<td>Model ID override. Anthropic default is <code>claude-sonnet-4-6</code>.</td>
+</tr>
+<tr>
+<td><code>--no-cache</code></td>
+<td><code>false</code></td>
+<td>Skip the SQLite LLM response cache for this run.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="command">Command<a class="headerlink" href="#command" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cv-corpus<span class="w"> </span>render<span class="w"> </span>output/rendered_resume.json<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>--format<span class="w"> </span>typst<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--out<span class="w"> </span>output/resume
+<h2 id="exit-codes">Exit codes<a class="headerlink" href="#exit-codes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td><code>RenderedResume</code> written, or <code>--dry-run</code> manifest printed.</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Synthesis error (e.g., LLM did not return a tool-use call).</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>Bad invocation: unknown target, unknown provider, bad <code>--max-visibility</code>.</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>Corpus failed to load. Run <code>cv-corpus validate</code> for detail.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-two-offline-modes">The two offline modes<a class="headerlink" href="#the-two-offline-modes" title="Permanent link">&para;</a></h2>
+<h3 id="-dry-run-inspect-selection-no-synthesis"><code>--dry-run</code>: inspect selection, no synthesis<a class="headerlink" href="#-dry-run-inspect-selection-no-synthesis" title="Permanent link">&para;</a></h3>
+<p><code>--dry-run</code> stops after the selector and prints a Rich manifest:
+roles chosen (chronologically), achievements per role (best-first by
+score), skills (after leaf preference), summary claims with scores,
+and per-subject claim ranking. Use this to:</p>
+<ul>
+<li>Catch an over-aggressive <code>avoid_skill_ids</code> entry that is pruning
+  relevant claims.</li>
+<li>Verify leaf-preference picked <code>django</code> instead of <code>python</code> when you
+  expected both.</li>
+<li>See which summary claims will anchor the resume before paying for
+  an LLM call.</li>
+</ul>
+<h3 id="-no-llm-deterministic-offline-build"><code>--no-llm</code>: deterministic offline build<a class="headerlink" href="#-no-llm-deterministic-offline-build" title="Permanent link">&para;</a></h3>
+<p><code>--no-llm</code> skips Pass A and Pass B entirely. <code>headline</code> and <code>summary</code>
+are left <code>null</code>; per-role bullets come from the raw <code>Claim.text</code> in
+selection order. Useful for:</p>
+<ul>
+<li>CI jobs that must not depend on an API key or network.</li>
+<li>Generating a "reference" resume against which LLM-rewritten output
+  can be diffed.</li>
+<li>Iterating on the selector or scorer without per-iteration LLM cost.</li>
+</ul>
+<h2 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h2>
+<p>LLM calls go through <code>CachedLLMProvider</code>, a write-through wrapper over
+a SQLite file at <code>platformdirs.user_cache_dir("tool_cv_corpus") /
+"llm_cache.sqlite"</code>. Cache keys are a sha256 of the full request, so:</p>
+<ul>
+<li>Changing <code>--model</code> busts only the affected entries.</li>
+<li>Editing one role's claim re-prices only that role's Pass B; other
+  roles still hit cache.</li>
+<li><code>--no-cache</code> disables the wrapper; useful while iterating on
+  prompts.</li>
+</ul>
+<h2 id="target-shape-reminder">Target shape reminder<a class="headerlink" href="#target-shape-reminder" title="Permanent link">&para;</a></h2>
+<p>A <code>Target</code> is just another corpus entity. Minimum viable:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">target</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">senior_eng_foo_corp</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">role_title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Senior Engineer</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nt">organization_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Foo Corp</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nt">emphasis_skill_ids</span><span class="p">:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">distributed_systems</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nt">avoid_skill_ids</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nt">requirements</span><span class="p">:</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5+</span><span class="nv"> </span><span class="s">years</span><span class="nv"> </span><span class="s">distributed</span><span class="nv"> </span><span class="s">systems&quot;</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;Python</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Rust&quot;</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nt">job_posting_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://jobs.example.com/123</span>
 </code></pre></div>
-<p><code>rendered_resume.json</code> is produced by <code>cv-corpus generate</code> (or
-hand-crafted if you prefer to drive the engine from a script).</p>
-<p>If the selected renderer's suffix is missing from <code>--out</code>, the
-renderer picks one from its registered <code>extensions</code> tuple.</p>
-<h2 id="typst-specifics">Typst specifics<a class="headerlink" href="#typst-specifics" title="Permanent link">&para;</a></h2>
-<p>The bundled template is intentionally plain. Fork it, point the
-renderer at your copy with <code>--template</code>, and re-render; no code
-changes required.</p>
-<p>If <code>typst</code> is not on <code>PATH</code> the renderer stops after writing
-<code>resume.typ</code> and <code>resume.json</code> next to your output path, so you can
-compile later on a machine that has it.</p>
+<p><code>emphasis_skill_ids</code> bias scoring upward (direct match beats ancestor
+match); <code>avoid_skill_ids</code> push claims toward the floor and exclude
+matching skills from the rendered skill list. <code>requirements</code> is
+free-form text surfaced to the LLM in Pass A and Pass B prompts; the
+selector does not score against it.</p>
+<h2 id="no-new-facts-guard">No-new-facts guard<a class="headerlink" href="#no-new-facts-guard" title="Permanent link">&para;</a></h2>
+<p>Pass B rewrites are checked for numeric tokens (dollar amounts,
+percentages, plain integers) that do not appear in the source claim.
+If the LLM returns <code>"Reduced ingestion latency by 50ms"</code> for a source
+that reads <code>"Reduced ingestion latency"</code>, the rewrite is rejected and
+the original text is emitted instead. Reorderings and synonyms pass;
+only fabricated metrics trigger a fallback. Named-entity and
+proper-noun checks are a future enhancement.</p>
 
 
 
