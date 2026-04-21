@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Fixed
+
+### Changed
+
+### Removed
+
+## [0.2.0] - 2026-04-21
+
+### Added
+
 - **`cv-corpus generate` is real.** Replaces the v0.1.0 stub with a
   full pipeline: loader → scorer → selector → synthesizer → JSON
   `RenderedResume`. Consumes a `Target` entity ID and tailors every

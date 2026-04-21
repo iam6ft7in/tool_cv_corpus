@@ -1,6 +1,6 @@
 [project]
 name = "tool-cv-corpus"
-version = "0.1.0"
+version = "0.2.0"
 description = "Schema-driven, LLM-assisted engine that compiles a graph-of-atoms career corpus into job-targeted CVs, resumes, and cover letters."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -8,7 +8,7 @@ license = { text = "Apache-2.0" }
 authors = [{ name = "Anthony Riles" }]
 keywords = ["resume", "cv", "cover-letter", "career", "llm", "typst", "json-resume"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 4 - Beta",
   "Intended Audience :: End Users/Desktop",
   "License :: OSI Approved :: Apache Software License",
   "Programming Language :: Python :: 3.12",
