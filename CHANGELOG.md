@@ -9,6 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **`LinkedInExportIngester` now reads four more CSVs** from a Complete
+  data-export ZIP, closing the gap between the README's plugin
+  description and the real ingester surface:
+  - `Profile.csv` becomes the `Person` entity (full name, headline,
+    geo location, optional Twitter/Websites under `contact`) plus a
+    `Claim(type=context, tags=[linkedin, profile_summary])` carrying
+    the long-form summary.
+  - `Positions.csv` `Description` now emits a
+    `Claim(type=context, tags=[linkedin, position_description])` on
+    each Role; previously dropped on the floor.
+  - `Recommendations_Received.csv` becomes `Testimonial` entities,
+    skipping rows whose `Status` is set and not `VISIBLE`.
+  - `Endorsement_Received_Info.csv` becomes per-Skill
+    `Claim(type=fact, tags=[linkedin, endorsement, date:YYYY-MM-DD])`
+    records. Skills referenced by an endorsement but absent from
+    `Skills.csv` are auto-emitted at `tier=applied` so the resulting
+    Claim has a valid subject under validator check `_c07`.
+- **Per-export `SourceDoc`**: every ingested ZIP produces one
+  `SourceDoc` whose `sha256` is the digest of the archive bytes,
+  `mime_type=application/zip`, and `captured_at` parsed from the
+  filename when it matches the standard
+  `Complete_LinkedInDataExport_MM-DD-YYYY.zip` shape. Every Claim
+  emitted by the ingester references that source by id.
+
 ### Fixed
 
 ### Changed
