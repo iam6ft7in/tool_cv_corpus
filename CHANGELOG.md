@@ -9,6 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **`cv-corpus author <corpus>`**: interactive wizard for adding
+  entities and Claims. Schema-introspecting prompts cover every field
+  on every entity kind (Person, Organization, Role, Project,
+  Achievement, Skill, Education, Publication, Artifact, Testimonial,
+  CoverLetterSeed, Target, SourceDoc). Foreign-key fields offer a
+  picker over existing entities; users can also type a free-form id to
+  forward-reference something they have not declared yet (the
+  validator's `_c05` check is the right gate for that). Long-form
+  fields (`summary`, `description`, `body`, `quote`, ...) accept `:e`
+  to open `$EDITOR`. After each entity is written the wizard offers to
+  attach a Claim immediately. Tier 1 of the three-tier guided-author
+  plan; Tier 2 (LLM paste-and-extract) and Tier 3 (gap detection) will
+  build on the same `Prompter` Protocol.
+- **`tool_cv_corpus.author`** package exposes the engine for scripting:
+  `prompt_for_entity`, `prompt_for_claim`, `Prompter` Protocol,
+  `ScriptedPrompter` (test helper), `CorpusState`, `write_entity`,
+  `write_claim`, `suggest_entity_id`, `DIRECTORY_BY_KIND`. The CLI
+  shell never reaches into schema internals; downstream scripts can
+  reuse the same primitives.
 - **`LinkedInExportIngester` now reads four more CSVs** from a Complete
   data-export ZIP, closing the gap between the README's plugin
   description and the real ingester surface:
