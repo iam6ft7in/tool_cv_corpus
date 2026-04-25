@@ -11,6 +11,7 @@ from __future__ import annotations
 import typer
 
 from . import (
+    author_cmd,
     doctor_cmd,
     generate_cmd,
     ingest_cmd,
@@ -32,6 +33,7 @@ app = typer.Typer(
 )
 
 app.command("init")(init_cmd.init)
+app.command("author")(author_cmd.author)
 app.command("ingest")(ingest_cmd.ingest)
 app.command("validate")(validate_cmd.validate)
 app.command("render")(render_cmd.render)
